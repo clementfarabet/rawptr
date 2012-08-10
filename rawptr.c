@@ -4,7 +4,8 @@
 
 static int Pointer_to_DoubleStorage(lua_State *L) {
   // get pointer
-  void *pointer = lua_touserdata(L,1);
+  long p = lua_tonumber(L,1);
+  void *pointer = (void *)p;
   long size = lua_tonumber(L,2);
 
   // convert
@@ -24,14 +25,15 @@ static int DoubleStorage_to_Pointer(lua_State *L) {
   void *pointer = storage->data;
 
   // push on stack
-  lua_pushlightuserdata(L, pointer);
+  lua_pushnumber(L, (long)pointer);
   lua_pushnumber(L, size);
   return 2;
 }
 
 static int Pointer_to_FloatStorage(lua_State *L) {
   // get pointer
-  void *pointer = lua_touserdata(L,1);
+  long p = lua_tonumber(L,1);
+  void *pointer = (void *)p;
   long size = lua_tonumber(L,2);
 
   // convert
@@ -51,7 +53,7 @@ static int FloatStorage_to_Pointer(lua_State *L) {
   void *pointer = storage->data;
 
   // push on stack
-  lua_pushlightuserdata(L, pointer);
+  lua_pushnumber(L, (long)pointer);
   lua_pushnumber(L, size);
   return 2;
 }
