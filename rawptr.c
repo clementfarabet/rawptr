@@ -10,6 +10,7 @@ static int Pointer_to_DoubleStorage(lua_State *L) {
 
   // convert
   THDoubleStorage *storage = THDoubleStorage_newWithData(pointer,size);
+  storage->flag -= TH_STORAGE_FREEMEM;
 
   // push on stack
   luaT_pushudata(L, storage, luaT_checktypename2id(L, "torch.DoubleStorage"));
@@ -38,6 +39,7 @@ static int Pointer_to_FloatStorage(lua_State *L) {
 
   // convert
   THFloatStorage *storage = THFloatStorage_newWithData(pointer,size);
+  storage->flag -= TH_STORAGE_FREEMEM;
 
   // push on stack
   luaT_pushudata(L, storage, luaT_checktypename2id(L, "torch.FloatStorage"));
